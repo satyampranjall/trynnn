@@ -1,0 +1,225 @@
+<!DOCTYPE html><html lang="en" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.shimmer-text {
+  background-size: 200% auto;
+  animation: shimmer 6s linear infinite;
+}
+#page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  background: #050608;
+  color: #f8fbff;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+#page-loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+#page-loader .loader {
+  width: 72px;
+  height: 72px;
+  position: relative;
+  perspective: 800px;
+}
+#page-loader .loader .inner {
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+#page-loader .loader .one {
+  border-bottom: 3px solid #efeffa;
+  animation: rotate-one 1s linear infinite;
+}
+#page-loader .loader .two {
+  border-right: 3px solid #efeffa;
+  animation: rotate-two 1s linear infinite;
+}
+#page-loader .loader .three {
+  border-top: 3px solid #efeffa;
+  animation: rotate-three 1s linear infinite;
+}
+#page-loader .loader-text {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #dfe6ff;
+}
+@keyframes rotate-one {
+  0% { transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg); }
+  100% { transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg); }
+}
+@keyframes rotate-two {
+  0% { transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg); }
+  100% { transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg); }
+}
+@keyframes rotate-three {
+  0% { transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg); }
+  100% { transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@media (max-width: 768px) {
+  [class*="blur-[120px]"], [class*="blur-[100px]"] { filter: blur(48px) !important; }
+  [class*="blur-[60px]"] { filter: blur(24px) !important; }
+  .backdrop-blur-xl, .backdrop-blur-2xl, .backdrop-blur-md { backdrop-filter: blur(8px) !important; -webkit-backdrop-filter: blur(8px) !important; }
+}
+</style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://cdn.tailwindcss.com"><link rel="preconnect" href="https://stream.mux.com"><link rel="preconnect" href="https://cdn.jsdelivr.net"><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&amp;family=Instrument+Serif&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><script defer src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-bright":"#393939","on-secondary-container":"#a9b5f3","surface-container-high":"#2a2a2a","surface-container-low":"#1b1b1b","on-primary-fixed-variant":"#002fc9","secondary-fixed-dim":"#b8c3ff","error":"#ffb4ab","primary-container":"#3054ff","on-secondary-fixed":"#07164c","secondary":"#b8c3ff","glass-overlay":"rgba(0,0,0,0.6)","secondary-container":"#39457c","inverse-primary":"#1e47f4","white-dim":"rgba(255,255,255,0.8)","accent-hover":"#2040e0","tertiary-fixed-dim":"#ffb59d","surface-container":"#1f1f1f","tertiary-fixed":"#ffdbd0","inverse-on-surface":"#303030","primary-fixed-dim":"#bac3ff","tertiary-container":"#be3c00","on-secondary":"#202c61","on-tertiary-fixed":"#390c00","surface-dim":"#131313","on-background":"#e2e2e2","on-error":"#690005","surface-container-lowest":"#0e0e0e","surface-tint":"#bac3ff","surface":"#131313","surface-container-highest":"#353535","primary-fixed":"#dee0ff","on-tertiary-fixed-variant":"#832700","on-tertiary":"#5d1900","surface-variant":"#353535","primary":"#bac3ff","background":"#131313","surface-dark":"#0a0400","outline":"#8e8fa2","error-container":"#93000a","on-surface-variant":"#c4c5d9","on-primary":"#001f90","on-secondary-fixed-variant":"#374379","on-error-container":"#ffdad6","on-primary-fixed":"#00105b","secondary-fixed":"#dde1ff","white-muted":"rgba(255,255,255,0.7)","tertiary":"#ffb59d","inverse-surface":"#e2e2e2","on-primary-container":"#e8e8ff","outline-variant":"#444656","on-surface":"#e2e2e2","on-tertiary-container":"#ffe4dd"},borderRadius:{DEFAULT:"1rem",lg:"2rem",xl:"3rem",full:"9999px"},spacing:{"stack-sm":"0.5rem","margin-desktop":"4rem","stack-md":"1.5rem","section-gap":"5rem","stack-lg":"3rem","margin-mobile":"1.5rem","container-max":"1280px",gutter:"24px"},fontFamily:{"body-md":["Instrument Sans"],"label-sm":["Instrument Sans"],"display-hero":["Instrument Sans"],"headline-serif-mobile":["Instrument Serif"],"button-text":["Instrument Sans"],"display-hero-mobile":["Instrument Sans"],"body-lg":["Instrument Sans"],"headline-serif":["Instrument Serif"]},fontSize:{"body-md":["16px",{lineHeight:"1.5",fontWeight:"400"}],"label-sm":["14px",{lineHeight:"20px",fontWeight:"500"}],"display-hero":["136px",{lineHeight:"0.9",letterSpacing:"-0.04em",fontWeight:"600"}],"headline-serif-mobile":["32px",{lineHeight:"1.1",fontWeight:"400"}],"button-text":["18px",{lineHeight:"1",fontWeight:"500"}],"display-hero-mobile":["64px",{lineHeight:"0.95",letterSpacing:"-0.03em",fontWeight:"600"}],"body-lg":["20px",{lineHeight:"1.65",fontWeight:"400"}],"headline-serif":["48px",{lineHeight:"1.1",fontWeight:"400"}]}}}}</script></head><body class="bg-background font-body-md text-on-background">
+  <div id="page-loader">
+    <div class="loader">
+      <div class="inner one"></div>
+      <div class="inner two"></div>
+      <div class="inner three"></div>
+    </div>
+    <div class="loader-text">Loading…</div>
+  </div>
+  <header class="fixed top-0 left-0 right-0 z-50 bg-transparent"><div class="max-w-container-max mx-4 lg:mx-auto mt-4 px-8 py-4 flex items-center justify-between bg-[rgba(255,255,255,0.03)] backdrop-blur-md border border-[rgba(255,255,255,0.1)] rounded-full"><div class="flex items-center gap-3"><img alt="Arthium Labs Logo" class="w-8 h-8 object-contain" width="32" height="32" decoding="async" src="https://lh3.googleusercontent.com/aida/AP1WRLuRuXQBB-IS_pfsN5J9bP8PJbcUAb-9ivMZzRIPMe33Hg5kGzeX1Bo-ns9YysINrkicHoQ9_XSA2HjR59H6DJGUSrQuZfhx15IPRaYcE520j5Mq1Va-q23QuDra6-IxA9iBTJax4Nq76cyIRxSoGs2JSXupUNZqmQN6sARuS9430-NwtLfyYz7O62bCwHLU97Rc_zaM_-UIoBeV6A-37BNbwhN5CvvYA0JvYXNygRe986clTmGDpbpKdNZOv2r9GVZtIgwMt6eCiA"></div><nav class="hidden lg:flex items-center gap-8" data-active-classes="text-primary font-semibold"><a class="text-label-sm font-label-sm text-white-muted hover:text-white transition-all duration-300 hover:scale-105 hover:brightness-125 active:scale-95 uppercase tracking-widest" data-path="services" href="services.html">Services</a><a class="text-label-sm font-label-sm text-white-muted hover:text-white transition-all duration-300 hover:scale-105 hover:brightness-125 active:scale-95 uppercase tracking-widest" data-path="reviews" href="review.html#reviews">Reviews</a><a class="text-label-sm font-label-sm text-white-muted hover:text-white transition-all duration-300 hover:scale-105 hover:brightness-125 active:scale-95 uppercase tracking-widest" data-path="pricing" href="review.html#pricing">Pricing</a><a class="text-label-sm font-label-sm text-white-muted hover:text-white transition-all duration-300 hover:scale-105 hover:brightness-125 active:scale-95 uppercase tracking-widest" data-path="contact" href="review.html#contact">Contact</a></nav><div class="flex items-center gap-6"><a class="hidden sm:block text-label-sm font-label-sm text-white-muted hover:text-white transition-all duration-300 hover:scale-105 hover:brightness-125 active:scale-95 uppercase tracking-widest" data-path="book-a-demo" href="review.html#contact">get your's</a></div></div></header><main class="relative w-full"><div class="flex flex-col w-full relative min-h-screen bg-black overflow-hidden pt-32 lg:pt-48 pb-24">
+<video class="absolute inset-0 w-full h-full object-cover opacity-60 pointer-events-none" id="hero-video" loop="" muted="" playsinline="" preload="none" poster="https://images.unsplash.com/photo-1647356191320-d7a1f80ca777?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGRhcmslMjB0ZWNobm9sb2d5JTIwbmV1cmFsJTIwbmV0d29ya3xlbnwxfHx8fDE3Njg5NzIyNTV8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080"></video>
+<div class="absolute inset-0 bg-black/60 backdrop-blur-[2px] pointer-events-none"></div>
+<div class="absolute top-[-20%] left-[20%] w-[600px] h-[600px] bg-secondary-container/20 rounded-full blur-[120px] mix-blend-screen pointer-events-none"></div>
+<div class="absolute bottom-[-10%] right-[20%] w-[500px] h-[500px] bg-primary-fixed-dim/20 rounded-full blur-[120px] mix-blend-screen pointer-events-none"></div>
+<div class="relative z-10 max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop flex flex-col items-center justify-center text-center flex-grow perspective-1000" id="hero-content">
+<div class="opacity-0 translate-y-5" id="anim-preheadline" style="transition: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); opacity: 1; transform: translateY(0px);">
+
+</div>
+<div class="opacity-0 mb-8 will-change-transform" id="anim-headline" style="transform: translateY(0px) scale(1) perspective(1000px) rotateX(-0.712891deg) rotateY(-3.95312deg); transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s; opacity: 1;">
+<h1 class="font-display-hero-mobile md:font-display-hero text-[64px] md:text-[136px] tracking-tight leading-[0.9] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-white via-primary-fixed-dim to-white shimmer-text drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+        ARTHIUMLABS</h1>
+</div>
+<div class="opacity-0 mb-12 max-w-xl" id="anim-subheadline" style="transition: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s; opacity: 1; transform: translateY(0px);">
+<p class="font-body-lg text-[20px] text-white-muted leading-[1.65]"><br><div class="">BUILT FOR BUSINESSES THAT REFUSE AVERAGE</div></p>
+</div>
+<div class="opacity-0 translate-y-5 flex flex-col sm:flex-row items-center gap-6" id="anim-buttons" style="transition: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.6s; opacity: 1; transform: translateY(0px);">
+<a href="review.html#contact" class="bg-white text-black pl-6 pr-2 py-2 rounded-full font-button-text text-button-text flex items-center gap-4 group transition-all hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:scale-[1.02]">
+<span class="">GET CONSULATANCY</span>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center group-hover:bg-accent-hover transition-colors">
+<span class="material-symbols-outlined text-[20px] text-white">arrow_forward</span>
+</div>
+</a>
+<a href="services.html" class="text-white-muted hover:text-white font-button-text text-button-text flex items-center gap-2 group transition-all px-4 py-2 rounded-full hover:bg-white/5">
+<span class="">PORTFOLIO</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+<script defer src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // HLS Video Setup — skipped on mobile / data-saver connections to keep things fast
+      const video = document.getElementById('hero-video');
+      const videoSrc = 'https://stream.mux.com/T6oQJQ02cQ6N01TR6iHwZkKFkbepS34dkkIc9iukgy400g.m3u8';
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      const saveData = navigator.connection && navigator.connection.saveData;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (video && !isMobile && !saveData) {
+        if (window.Hls && Hls.isSupported()) {
+          const hls = new Hls();
+          hls.loadSource(videoSrc);
+          hls.attachMedia(video);
+          hls.on(Hls.Events.MANIFEST_PARSED, function() {
+            video.play().catch(() => {});
+          });
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+          video.src = videoSrc;
+          video.addEventListener('loadedmetadata', function() {
+            video.play().catch(() => {});
+          }, { once: true });
+        }
+      } else if (video) {
+        video.remove();
+      }
+
+      // Entrance Animations
+      const animateEl = (id, props, delay) => {
+        const el = document.getElementById(id);
+        if(!el) return;
+        
+        if (id === 'anim-headline') {
+            el.style.transition = `all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) ${delay}s`; // springy bezier
+        } else {
+            el.style.transition = `all ${props.duration || '0.6s'} cubic-bezier(0.2, 0.8, 0.2, 1) ${delay}s`;
+        }
+        
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            el.style.opacity = props.opacity || '1';
+            if (props.transform) el.style.transform = props.transform;
+          }, 50); // small initial delay to ensure transition applies
+        });
+      };
+
+      animateEl('anim-preheadline', { opacity: '1', transform: 'translateY(0)' }, 0);
+      animateEl('anim-headline', { opacity: '1', transform: 'translateY(0) scale(1)' }, 0.2);
+      animateEl('anim-subheadline', { opacity: '1', transform: 'translateY(0)' }, 0.4);
+      animateEl('anim-buttons', { opacity: '1', transform: 'translateY(0)' }, 0.6);
+
+      // Mouse tracking tilt effect — desktop only, rAF-throttled for smoothness
+      const animHeadline = document.getElementById('anim-headline');
+      if (!isMobile && !reduceMotion && animHeadline) {
+        let ticking = false;
+        let lastX = 0.5, lastY = 0.5;
+        const applyTilt = () => {
+          const tiltX = (lastY - 0.5) * -10;
+          const tiltY = (lastX - 0.5) * 10;
+          animHeadline.style.transform = `translateY(0) scale(1) perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+          ticking = false;
+        };
+        document.addEventListener('mousemove', (e) => {
+          lastX = e.clientX / window.innerWidth;
+          lastY = e.clientY / window.innerHeight;
+          if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(applyTilt);
+          }
+        }, { passive: true });
+      }
+
+      // Loader — gated only on fonts + full page load, never on video buffering,
+      // so the site never feels stuck waiting for a heavy stream.
+      const loader = document.getElementById('page-loader');
+      const hideLoader = () => {
+        if (!loader || loader.classList.contains('hidden')) return;
+        loader.classList.add('hidden');
+        setTimeout(() => loader.remove(), 500);
+      };
+
+      const waitForFonts = document.fonts ? document.fonts.ready : Promise.resolve();
+      const waitForPageLoad = new Promise((resolve) => {
+        if (document.readyState === 'complete') {
+          resolve();
+          return;
+        }
+        window.addEventListener('load', resolve, { once: true });
+      });
+
+      Promise.race([
+        Promise.all([waitForFonts, waitForPageLoad]),
+        new Promise((resolve) => setTimeout(resolve, 2500)) // safety timeout
+      ]).then(hideLoader);
+    });
+  </script>
+</div></main>
+
+
+
+
+</body></html>
